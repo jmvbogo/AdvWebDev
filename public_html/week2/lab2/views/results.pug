@@ -2,19 +2,13 @@
 extends layout
 
 block content
-  h1= title
-
-  a(href="./") Home
-
-  a(href="./form.pug") Form
-
-  a(href="./about.pug") About
-  
-  br
-  br
-  br
-  h3= title1
-    br
-  h3= title2
-    br
-  h3= title3
+    h1= title
+    p
+        strong  Name:
+        span #{title1}
+    p
+        strong  Name:
+        span #{title2}
+    p
+        strong  Name:
+        span #{title3}
