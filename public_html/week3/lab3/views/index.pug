@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Pick a number to generate #{title}
+
+    br
+    
+    form
+        select (id="nmbr", value="Number")
+            option 0
+            option 3
+            option 4
+            option 5 
+            option 10
+            option 20
+        br        
+        input(type="submit", class="button" ,value="submit")
