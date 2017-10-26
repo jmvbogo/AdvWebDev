@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var debug = require('debug')('demo:index');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,8 +26,8 @@ router.post('/form', function(req, res, next) {
     req.sanitize('email').trim();
     
     //Run the validators
-var errors = req.validationErrors();
-    
+var errors = req.validationErrors(); 
+    debug(errors);
   res.render('form', { title: req.body.email, errors: errors });
 });
 

@@ -5,4 +5,22 @@ body {
 
 a {
   color: #00B7FF;
+
+  padding-right: 10px;
 }
+
+.center {
+    text-align: center;
+}
+
+.button {
+    border-radius: 2px;
+    background-color: dodgerblue;
+    border: 1px solid firebrick;
+    color: white;
+}
+
+span {
+    padding-left: 6px;
+}
+
