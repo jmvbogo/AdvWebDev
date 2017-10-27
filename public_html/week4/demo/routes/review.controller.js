@@ -8,19 +8,19 @@ module.exports.home = function(req, res){
         
        var msg = '';
         
-        Review.create({
+        Review.create({ //creates new document in the db table "Review"
           author: req.body.name,
           rating: req.body.rating,
           reviewText: req.body.review
         })
-        .then(function(){
+        .then(function(){ //try
             msg = 'Review was Saved';
             return;
         })
-        .catch(function(err){            
+        .catch(function(err){ //catch          
             msg = 'Review was not Saved';
             return err.message;
-        }).then(function(err){
+        }).then(function(err){ //finally
             res.render('index', { 
                 title: 'home',
                 message : msg,
@@ -28,7 +28,7 @@ module.exports.home = function(req, res){
              });
         });   
               
-    } else {
+    } else { //move on
         res.render('index', { 
             title: 'home',
             message : ''
@@ -39,36 +39,38 @@ module.exports.home = function(req, res){
 
 module.exports.view = function(req, res){
     
-     var id = req.params.id,
+    Review
+        .find()
+        .exec()
+        .then(function(results){
+             res.render('view', { 
+                 title: 'View Results',
+                 results : results
+             });
+        });
+
+};
+
+module.exports.delete = function(req, res){
+    
+    var id = req.params.id,
          removed = '';
  
-    function finish() {     
-       Review
-       .find()
-       .exec()
-       .then(function(results){
-            res.render('view', { 
-                title: 'View Results',
-                results : results,
-                removed : removed
-            });
-       });
-    }
-    
-     if ( id ) {        
-        Review.remove({ _id: id })
+    Review.remove({ _id: id })
         .then(function(){            
             removed = `${id} has been removed`;
-            finish();
+            return;
         })
         .catch(function (err) {            
             removed = `${id} has not been removed`;
-            finish(); 
-        });                           
-     } else {
-      finish();
-    }
-     
+            return err; 
+        })
+        //newer way to create/call a function        
+        .then( (err)=> {
+            res.render('delete', { 
+                removed : removed
+            });
+        });
 };
 
 
@@ -85,36 +87,45 @@ module.exports.update = function(req, res){
             .findById(id)
             .exec() 
             .then(function(reviewData) {
-                // figure out why the data is not saving.        
-                reviewData.author = req.body.author;
+                // figure out why the data is not saving.
+                debug(req.body);
+                reviewData.author = req.body.name;
                 reviewData.rating = req.body.rating;
-                reviewData.reviewText = req.body.reviewText;
+                reviewData.reviewText = req.body.review;
 
                 return reviewData.save();
                                 
             })
-            .then(function(){
-                msg = 'data has been updated';
-            })
             .catch(function(){
                 msg = 'data has NOT been updated';
+                return
+            })
+            .then(function(){
+                msg = 'data has been updated';
+                return
+            })
+            .then(function(){
+                finish()
             });
-        
+    }else {
+        finish()
     }
-        
-    Review
-    .findOne({ '_id': id })
-    .exec()
-    .then(function(results){    
-        res.render('update', { 
-            title: 'Update Results',
-            message: msg,
-            results : results
+     
+     function finish(){ 
+        Review
+        .findOne({ '_id': id })
+        .exec()
+        .then(function(results){    
+            res.render('update', { 
+                title: 'Update Results',
+                message: msg,
+                results : results
+            });
+        })
+        .catch(function(){
+            res.render('notfound', { 
+                message: 'Sorry ID not found'
+            });
         });
-    })
-    .catch(function(){
-        res.render('notfound', { 
-            message: 'Sorry ID not found'
-        });
-    });
+     }
 };
