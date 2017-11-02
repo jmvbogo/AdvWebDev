@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    h1=title
+
+    if results
+        table(border="1")
+            thead   
+                tr
+                    th firstName
+                    th lastName
+                    th department
+                    th startDate
+                    th jobTitle
+                    th salary
+                    th createdOn
+                    th
+                    th
+            tbody
+              each employee in results
+                tr
+                    td 
+                        =employee.firstName
+                    td 
+                        =employee.lastName
+                    td 
+                        =employee.department
+                    td
+                        =employee.startDate
+                    td
+                        =employee.jobTitle
+                    td
+                        =employee.salary
+                    td 
+                        =employee.createdOn.toDateString()
+                    td
+                        a(href="../update/"+employee._id) Update
+                    td
+                        a(href="../delete/"+employee._id) Delete
+    else
+        p No employee found
