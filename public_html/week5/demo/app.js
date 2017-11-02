@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-require('./db');
+require('./db'); //need this to grab the database
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -24,12 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// used to display the json in pretty print format
+// used to display the json in pretty print format****used for indenting 
 app.set('json spaces', 2);
 
-// enable Cross-Origin Resource Sharing (CORS)
+// enable Cross-Origin Resource Sharing (CORS) 
 app.use(function(reg, res, next){
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*'); //this specifies who can come in
     res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');   
     next();
