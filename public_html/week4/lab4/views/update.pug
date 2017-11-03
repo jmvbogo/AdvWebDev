@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1=title
-
+    h4= message
     form(action="/update", method="post", role="form")
         label First Name: 
               input#firstName(name="firstName" value=results.firstName)

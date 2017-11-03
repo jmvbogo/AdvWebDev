@@ -18,11 +18,11 @@ module.exports.create = function(req, res){
           salary: req.body.salary,
         })
         .then(function(){
-            msg = 'Employee was Saved';
+            msg = 'Employee add.';
             return;
         })
         .catch(function(err){        
-            msg = 'Employee was not Saved';
+            msg = 'Error: 0110001001100001011100110110100101100011 - Employee was NOT saved. Please make sure all fields are filled.';
             return err.message;
         }).then(function(err){ //finally
             debug(msg)
@@ -77,11 +77,11 @@ module.exports.update = function(req, res){
                                 
             })
             .then(function(){                
-                msg = 'data has been updated';
+                msg = 'Employee has been updated.';
                 return
             })
             .catch(function(err){              
-                msg = 'data has NOT been updated';
+                msg = 'Error: 0110001001100001011100110110100101100011 - Employee data has NOT been updated';
                 return
             })           
             .then(function(){

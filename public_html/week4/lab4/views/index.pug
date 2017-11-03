@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-
+  h4= message
   form(action="/", method="post", role="form")
 
     label First Name: 
@@ -32,4 +32,4 @@ block content
       input#salary(name="salary")
     br
     br
-    input(type="submit" value="Add Employee") 
+    input(class='button' type="submit" value="Add Employee") 

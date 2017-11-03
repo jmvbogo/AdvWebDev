@@ -34,8 +34,8 @@ block content
                     td 
                         =Empl.createdOn.toDateString()
                     td
-                       a(href="./update/"+Empl._id) Update
+                       a(class='crud' href="./update/"+Empl._id) Update
                     td
-                        a(href="./delete/"+Empl._id) Delete
+                        a(class='crud' href="./delete/"+Empl._id) Delete
     else
         p No employee found
