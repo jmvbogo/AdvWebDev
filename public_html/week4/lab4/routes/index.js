@@ -1,21 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var emplCtrl = require('./empl.controller')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'C.R.U.D' });
 });
 
-router.get('/view', function(req, res, next) {
-  res.render('view', { title: 'View' });
-});
+router.post('/', emplCtrl.create);
 
-router.get('/update', function(req, res, next) {
-  res.render('update', { title: 'Update' });
-});
+router.get('/view', emplCtrl.view);
 
-router.get('/delete', function(req, res, next) {
-  res.render('delete', { title: 'Delete' });
-});
+router.get('/update/:id?', emplCtrl.update);
+
+router.post('/update/:id?', emplCtrl.update);
+
+router.get('/delete/:id?', emplCtrl.delete);
 
 module.exports = router;

@@ -6,11 +6,11 @@ block content
   form(action="/", method="post", role="form")
 
     label First Name: 
-      input#firstName(firstName="firstName")
+      input#firstName(name="firstName")
     br 
     br
     label Last Name: 
-      input#lastName(lastName="lastName")
+      input#lastName(name="lastName")
     br
     br
     label Department: 
@@ -21,15 +21,15 @@ block content
     br 
     br
     label Start Date: 
-        input(type="date") 
+        input(type="date", name="startDate") 
     br
     br
     label Job Title: 
-      input#jobTitle(jobTitle="jobTitle")
+      input#jobTitle(name="jobTitle")
     br
     br
     label Salary:
-      input#salary(salary="salary")
+      input#salary(name="salary")
     br
     br
     input(type="submit" value="Add Employee") 

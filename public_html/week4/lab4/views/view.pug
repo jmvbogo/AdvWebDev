@@ -7,35 +7,35 @@ block content
         table(border="1")
             thead   
                 tr
-                    th firstName
-                    th lastName
-                    th department
-                    th startDate
-                    th jobTitle
-                    th salary
-                    th createdOn
-                    th
-                    th
+                    th First Name
+                    th Last Name
+                    th Department
+                    th Start Date
+                    th Job Title
+                    th Salary
+                    th Created On
+                    th Update
+                    th Delete
             tbody
-              each employee in results
+              each Empl in results
                 tr
                     td 
-                        =employee.firstName
+                        =Empl.firstName
                     td 
-                        =employee.lastName
+                        =Empl.lastName
                     td 
-                        =employee.department
+                        =Empl.department
                     td
-                        =employee.startDate
+                        =Empl.startDate.toLocaleDateString("en-US")
                     td
-                        =employee.jobTitle
+                        =Empl.jobTitle
                     td
-                        =employee.salary
+                        =Empl.salary
                     td 
-                        =employee.createdOn.toDateString()
+                        =Empl.createdOn.toDateString()
                     td
-                        a(href="../update/"+employee._id) Update
+                       a(href="./update/"+Empl._id) Update
                     td
-                        a(href="../delete/"+employee._id) Delete
+                        a(href="./delete/"+Empl._id) Delete
     else
         p No employee found
