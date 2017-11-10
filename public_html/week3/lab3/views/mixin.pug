@@ -1,0 +1,11 @@
+mixin makeTable(results)
+    table(border="1")
+
+             thead
+                 tr
+                     th Color
+             tbody
+                 each color in results
+                     tr
+                         td
+                             = color.colors

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1=title
+    h4= message
+    form(action="/update", method="post", role="form")
+        label First Name: 
+              input#firstName(name="firstName" value=results.firstName)
+        br 
+        br
+        label Last Name: 
+            input#lastName(name="lastName" value=results.lastName)
+        br
+        br
+        label Department: 
+            select#department(name="department")
+                option(selected=results.department == "HR") HR
+                option(selected=results.department == "Corporate") Corporate
+                option(selected=results.department == "Sales") Sales
+        br 
+        br
+        label Start Date: 
+            input(type="date", name="startDate" value=results.startDate.toISOString().slice(0,10)) 
+        br
+        br
+        label Job Title: 
+            input#jobTitle(name="jobTitle" value=results.jobTitle)
+        br
+        br
+        label Salary:
+            input#salary(name="salary" value=results.salary)
+        br
+        br
+        input(type="hidden" name="_id" value=results._id)
+        input(type="submit" value="Update Employee") 

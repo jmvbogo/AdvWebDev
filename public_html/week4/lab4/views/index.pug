@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  h4= message
+  form(action="/", method="post", role="form")
+
+    label First Name: 
+      input#firstName(name="firstName")
+    br 
+    br
+    label Last Name: 
+      input#lastName(name="lastName")
+    br
+    br
+    label Department: 
+      select#department(name="department")
+        option HR
+        option Corporate
+        option Sales
+    br 
+    br
+    label Start Date: 
+        input(type="date", name="startDate") 
+    br
+    br
+    label Job Title: 
+      input#jobTitle(name="jobTitle")
+    br
+    br
+    label Salary:
+      input#salary(name="salary")
+    br
+    br
+    input(class='button' type="submit" value="Add Employee") 

@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    h1=title
+
+    if results
+        table(border="1")
+            thead   
+                tr
+                    th First Name
+                    th Last Name
+                    th Department
+                    th Start Date
+                    th Job Title
+                    th Salary
+                    th Created On
+                    th Update
+                    th Delete
+            tbody
+              each Empl in results
+                tr
+                    td 
+                        =Empl.firstName
+                    td 
+                        =Empl.lastName
+                    td 
+                        =Empl.department
+                    td
+                        =Empl.startDate.toLocaleDateString("en-US")
+                    td
+                        =Empl.jobTitle
+                    td
+                        =Empl.salary
+                    td 
+                        =Empl.createdOn.toDateString()
+                    td
+                       a(class='crud' href="./update/"+Empl._id) Update
+                    td
+                        a(class='crud' href="./delete/"+Empl._id) Delete
+    else
+        p No employee found

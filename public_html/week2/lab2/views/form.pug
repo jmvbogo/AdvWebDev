@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1=title 
+   
+    form(method="post" action="/form")
+        p Name
+        input(type="text" name="name") 
+       
+        p Email
+        input(type="text" name="email")
+        
+        p Comments        
+        textarea(name="comment")
+        br
+        br
+        input(type="submit", class="button" ,value="submit")
+    
