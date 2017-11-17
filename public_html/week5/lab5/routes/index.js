@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var ctrlEmpl = require('./Empl.controller');
 
-router.get('/Empl', ctrlEmpl.emplReadAll);
-router.get('/Empl/:id', ctrlEmpl.emplReadOne);
-router.post('/Empl', ctrlEmpl.emplCreate);
-router.put('/Empl/:id', ctrlEmpl.emplUpdateOne);
-router.delete('/Empl/:id', ctrlEmpl.emplDeleteOne);
+router.get('/employees', ctrlEmpl.emplReadAll);
+router.get('/employees/:id', ctrlEmpl.emplReadOne);
+router.post('/employees', ctrlEmpl.emplCreate);
+router.put('/employees/:id', ctrlEmpl.emplUpdateOne);
+router.delete('/employees/:id', ctrlEmpl.emplDeleteOne);
 
 
 module.exports = router;

@@ -1,6 +1,6 @@
 
 var Empl = require('./Empl.model');
-var debug = require('debug')('lab4:Employee');
+var debug = require('debug')('lab5:Employee');
 
 function sendJSONresponse(res, status, content) {
     res.status(status);
