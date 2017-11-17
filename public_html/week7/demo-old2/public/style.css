@@ -83,3 +83,21 @@ input[type="checkbox"]:required:valid + label::before {
   font-size: 1.6em;
   color: green;
 }
+
+
+.sort {
+    
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.sort:after {
+    content: " \25bc";
+    color: transparent;
+    vertical-align: super;
+    font-size: xx-small;
+}
+
+.sort.active:after {
+    color: red;
+}

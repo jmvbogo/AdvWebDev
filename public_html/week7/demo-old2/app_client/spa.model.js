@@ -14,8 +14,34 @@ class Model extends BaseModel {
                     data.forEach((review) => {
                         review.createdOnFormated = this.formatDate(review.createdOn)
                     })
+                   this.dataBindModel.todoData = data 
                    return Components.todoTable(data).then(html => { return this.dataBindModel.todoTable = html })
                 })
+    }
+    
+    sort(evt) {        
+        const key = evt.target.dataset.sort
+        this.dataBindModel.todoDataSort = key
+        this.dataBindModel.todoData.sort(function (a, b) {
+            return a[key].toString().localeCompare(b[key]);
+        });        
+        return Components.todoTable(this.dataBindModel.todoData).then(html => { return this.dataBindModel.todoTable = html })
+    }
+    
+    get isSortAuthor(){
+        return this.dataBindModel.todoDataSort === 'author'
+    }
+    
+    get isSortRating(){
+        return this.dataBindModel.todoDataSort === 'rating'
+    }
+    
+    get isSortReviewText(){
+        return this.dataBindModel.todoDataSort === 'reviewText'
+    }
+    
+    get isSortCreatedOn(){
+        return this.dataBindModel.todoDataSort === 'createdOn'
     }
     
     deleteTodo(evt) {

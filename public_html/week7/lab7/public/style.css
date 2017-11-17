@@ -42,9 +42,8 @@
 }
 
 
-.table td, .table th {
+.table td {
     vertical-align: middle;
-    text-align: center;
 }
 
 .spacer {

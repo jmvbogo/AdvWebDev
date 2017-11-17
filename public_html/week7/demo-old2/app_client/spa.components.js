@@ -6,7 +6,7 @@ class Components {
                     `<tr>
                         <td>${row.author}</td>
                         <td>${row.rating}</td>
-                        <td data-bind-class="{}">${row.reviewText}</td>
+                        <td>${row.reviewText}</td>
                         <td>${row.createdOnFormated}</td>
                         <td><button data-id="${row._id}" data-bind-event="click:deleteTodo" class="button is-danger is-outlined">Delete</button></td>
                         <td><button data-id="${row._id}" data-bind-event="click:goToUpdatePage" class="button is-link is-outlined">Update</button></td>

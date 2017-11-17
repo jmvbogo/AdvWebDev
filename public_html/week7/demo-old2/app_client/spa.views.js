@@ -1,5 +1,5 @@
 class View {
-
+    
     get home() {
         return Promise.resolve(`<section class="hero is-info is-small spacer">
                     <div class="hero-body">
@@ -10,10 +10,10 @@ class View {
                 <table class="table is-spaced is-bordered is-hoverable is-fullwidth is-small">
                   <thead>
                     <tr class="is-selected">
-                        <th>Author</th>
-                        <th>Rating</th>
-                        <th>Review</th>
-                        <th>Created</th>
+                        <th data-sort="author" data-bind-event="click:sort" data-bind-class="{'active': 'isSortAuthor'}" class="sort active">Author</th>
+                        <th data-sort="rating" data-bind-event="click:sort" data-bind-class="{'active': 'isSortRating'}" class="sort">Rating</th>
+                        <th data-sort="reviewText" data-bind-event="click:sort" data-bind-class="{'active': 'isSortReviewText'}" class="sort">Review</th>
+                        <th data-sort="createdOn" data-bind-event="click:sort" data-bind-class="{'active': 'isSortCreatedOn'}" class="sort">Created</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -37,11 +37,7 @@ class View {
                         <label class="label">Rating</label>
                         <select name="rating" class="select" required>
                             <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            ${[1,2,3,4,5].map(num => `<option value="${num}">${num}</option>`).join('')}                            
                         </select>
                     </div>
                     <div class="field">

@@ -5,7 +5,7 @@ class Controller {
     }
 
     home() {
-        return this.Model.getReviewList()
+        return this.Model.getTodoList()
     }
     
     add() { 

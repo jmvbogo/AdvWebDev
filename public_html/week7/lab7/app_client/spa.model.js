@@ -3,35 +3,32 @@ class Model extends BaseModel {
     constructor() {
         super()  
         this.APIS = {
-            Reviews : `//${window.location.hostname}:3001/api/v1/reviews/`
+            Todo : 'public/todo.json'
         }
     }
     
     
-    getReviewList() {
-        return this.http.get(this.APIS.Reviews)
+    getTodoList() {
+        return this.http.get(this.APIS.Todo)
                 .then( data => {
-                    data.forEach((review) => {
-                        review.createdOnFormated = this.formatDate(review.createdOn)
-                    })
                    return Components.todoTable(data).then(html => { return this.dataBindModel.todoTable = html })
                 })
     }
     
     deleteTodo(evt) {
-       const url = `${this.APIS.Reviews}${evt.target.dataset.id}`
+       const url = `${this.APIS.Todo}${evt.target.dataset.id}`
        return this.http.delete(url)
                 .then( ()=>{
-                   return this.dataBindModel.deleteResultMsg = 'Review Deleted'                                
+                   return this.dataBindModel.deleteResultMsg = 'Todo Deleted'                                
                 }).catch( err => {
-                    return this.dataBindModel.deleteResultMsg = 'Review was NOT Deleted'                                 
+                    return this.dataBindModel.deleteResultMsg = 'Todo was NOT Deleted'                                 
                 }).then( () => {
-                   return this.getReviewList()
+                   return this.getTodoList()
                 })
     
     }
     
-    saveReview(evt) {
+    saveTodo(evt) {
         
         let form = evt.target.form        
         if (!form.checkValidity()) {
@@ -39,16 +36,15 @@ class Model extends BaseModel {
             return Promise.resolve()
         }
         const data = {
-           author : this.dataBindModel.author,
-           rating : this.dataBindModel.rating,
-           reviewText : this.dataBindModel.reviewText
+           title : this.dataBindModel.title,
+           completed : this.dataBindModel.completed
         }                    
-        return this.http.post(this.APIS.Reviews, data)
+        return this.http.post(this.APIS.Todo, data)
                 .then( data => {
-                   this.dataBindModel.saveResultMsg = 'Review Saved'
+                   this.dataBindModel.saveResultMsg = 'Todo Saved'
                    return data
                 }).catch( err => {
-                   this.dataBindModel.saveResultMsg = 'Review was NOT Saved'   
+                   this.dataBindModel.saveResultMsg = 'Todo was NOT Saved'   
                    return err
                 })  
     }
@@ -59,9 +55,9 @@ class Model extends BaseModel {
     }
         
     updatePageLoad() {
-        const url = `${this.APIS.Reviews}${this.urlParams().get('id')}`
+        const url = `${this.APIS.Todo}${this.urlParams().get('id')}`
         return this.http.get(url).then( data => {           
-            this.dataBindModel = {author: data.author, rating: data.rating, reviewText: data.reviewText, _id: data._id }
+            this.dataBindModel = {title: data.title, completed: data.completed, id: data.id }
             return data
         })     
     }
@@ -73,17 +69,16 @@ class Model extends BaseModel {
              return Promise.resolve()
          }
         const data = {
-            author : this.dataBindModel.author,
-            rating : this.dataBindModel.rating,
-            reviewText : this.dataBindModel.reviewText
+            title : this.dataBindModel.title,
+            completed : this.dataBindModel.completed
         }
-         const url = `${this.APIS.Reviews}${this.dataBindModel._id}`
+         const url = `${this.APIS.Todo}${this.dataBindModel.id}`
          return this.http.put(url, data)
                  .then( data => {
-                     this.dataBindModel.updateResultMsg = 'Review updated'
+                     this.dataBindModel.updateResultMsg = 'Todo updated'
                      return data
                  }).catch( err => {
-                     this.dataBindModel.updateResultMsg = 'Review was NOT updated'   
+                     this.dataBindModel.updateResultMsg = 'Todo was NOT updated'   
                      return err
                  })  
     }
