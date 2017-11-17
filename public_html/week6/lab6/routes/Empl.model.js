@@ -37,6 +37,6 @@ var employeeSchema = new mongoose.Schema({
     }
 });
 
-var Empl = mongoose.model('Empl', employeeSchema);
+var Empl = mongoose.model('Employees', employeeSchema);
 
 module.exports = Empl;

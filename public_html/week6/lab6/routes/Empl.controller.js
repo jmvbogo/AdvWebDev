@@ -1,5 +1,6 @@
+
 var Empl = require('./Empl.model');
-var debug = require('debug')('lab4:Employee');
+var debug = require('debug')('lab6:Employee');
 
 function sendJSONresponse(res, status, content) {
     res.status(status);
@@ -9,7 +10,6 @@ function sendJSONresponse(res, status, content) {
 module.exports.emplReadAll = function(req, res) {
         
     debug('Getting all Employees');
-    
     Empl
      .find(req.where, null, req.options)
      .exec()
@@ -120,3 +120,4 @@ module.exports.emplDeleteOne = function(req, res) {
     });
     
 };
+
