@@ -25,24 +25,17 @@ and open the template in the editor.
                 console.log(json)
             })
            
-           
-        </script>
-        
-        <script>
-            
-            $(document).ready(function() {
-                var json = ['todo.json']
-                
-                var ugh;
-                for (var i = 0; i < json.length; i++) {
-                    ugh = $('<tr/>');
-                    ugh.append("<td>" + json[i].userId + "test</td>");
-                    ugh.append("<td>" + json[i].id + "</td>");
-                    ugh.append("<td>" + json[i].title + "</td>");
-                    ugh.append("<td>" + json[i].completed + "</td>");
-                    $('table').append(ugh);
-                }
-                });
+            var json = ['todo.json']
+
+            for (var i = 0; i < json.length; i++) {
+             <tr>
+                <td>${json.userId[i]}</td>
+                <td>${json.id[i]}</td>
+                <td>${json.title[i]}</td>
+                <td>${json.completed[i]}</td>
+             </tr>
+            }
+
             
         </script>
         
