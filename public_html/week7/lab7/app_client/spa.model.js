@@ -3,20 +3,24 @@ class Model extends BaseModel {
     constructor() {
         super()  
         this.APIS = {
-            Todo : 'public/todo.json'
+            Employees : 'http://localhost:3001/api/v1/employees'
         }
     }
     
     
     getTodoList() {
-        return this.http.get(this.APIS.Todo)
+        return this.http.get(this.APIS.Employees)
                 .then( data => {
-                   return Components.todoTable(data).then(html => { return this.dataBindModel.todoTable = html })
+                    data.forEach(row => {
+                      row.salary = `$${this.formatNumber(row.salary)}` 
+                      row.startDate = this.formatDate(row.startDate)  
+                    })
+                   return Components.employeeTable(data).then(html => { return this.dataBindModel.todoTable = html })
                 })
     }
     
     deleteTodo(evt) {
-       const url = `${this.APIS.Todo}${evt.target.dataset.id}`
+       const url = `${this.APIS.Employees}${evt.target.dataset.id}`
        return this.http.delete(url)
                 .then( ()=>{
                    return this.dataBindModel.deleteResultMsg = 'Todo Deleted'                                
@@ -36,15 +40,19 @@ class Model extends BaseModel {
             return Promise.resolve()
         }
         const data = {
-           title : this.dataBindModel.title,
-           completed : this.dataBindModel.completed
+           firstName : this.dataBindModel.firstName,
+           lastName : this.dataBindModel.lastName,
+           department : this.dataBindModel.department,
+           startDate : this.dataBindModel.startDate,
+           jobTitle : this.dataBindModel.jobTitle,
+           salary : this.dataBindModel.salary
         }                    
-        return this.http.post(this.APIS.Todo, data)
+        return this.http.post(this.APIS.Employees, data)
                 .then( data => {
-                   this.dataBindModel.saveResultMsg = 'Todo Saved'
+                   this.dataBindModel.saveResultMsg = 'Employee Saved'
                    return data
                 }).catch( err => {
-                   this.dataBindModel.saveResultMsg = 'Todo was NOT Saved'   
+                   this.dataBindModel.saveResultMsg = 'Employee was NOT Saved'   
                    return err
                 })  
     }
@@ -55,7 +63,7 @@ class Model extends BaseModel {
     }
         
     updatePageLoad() {
-        const url = `${this.APIS.Todo}${this.urlParams().get('id')}`
+        const url = `${this.APIS.Employees}${this.urlParams().get('id')}`
         return this.http.get(url).then( data => {           
             this.dataBindModel = {title: data.title, completed: data.completed, id: data.id }
             return data
@@ -72,7 +80,7 @@ class Model extends BaseModel {
             title : this.dataBindModel.title,
             completed : this.dataBindModel.completed
         }
-         const url = `${this.APIS.Todo}${this.dataBindModel.id}`
+         const url = `${this.APIS.Employees}${this.dataBindModel.id}`
          return this.http.put(url, data)
                  .then( data => {
                      this.dataBindModel.updateResultMsg = 'Todo updated'
@@ -97,5 +105,4 @@ class Model extends BaseModel {
         const msg = this.dataBindModel.updateResultMsg
         return msg && msg.toLowerCase().indexOf('not') === -1 && msg.toLowerCase().indexOf('required') === -1
     }
-
 }
