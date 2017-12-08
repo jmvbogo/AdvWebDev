@@ -15,37 +15,43 @@ and open the template in the editor.
         
          <script type="text/javascript">
                       
-            let myRequest = 'todo.json'
+            let myRequest = 'todo.json';
             
             fetch(myRequest)
             .then(function(response) {              
-                  return response.json()               
+                  return response.json();               
             })
-            .then(function(json) { 
-                console.log(json)
-            })
-           
-            var json = ['todo.json']
-
+            .then(function(json) {
+                console.log(json);
+        
             for (var i = 0; i < json.length; i++) {
-             <tr>
-                <td>${json.userId[i]}</td>
-                <td>${json.id[i]}</td>
-                <td>${json.title[i]}</td>
-                <td>${json.completed[i]}</td>
-             </tr>
-            }
+                let myString = '';
+                
+                myString += '<table>';
+                myString += '<tr>';
+                myString += '<td>' + json[i].userId + '</td>';
+                myString += '<td>' + json[i].id + '</td>';
+                myString += '<td>' + json[i].title + '</td>';
+                myString += '<td>' + json[i].completed + '</td>';
+                myString += '</tr>';
+                myString += '</table>';
+                
+                document.querySelector('tbody').innerHTML += myString;
+                }
+         });
+          
 
             
         </script>
         
         <table>
             <tr>
-                <th>userId</th>
-                <th>id</th>
-                <th>title</th>
-                <th>completed</th>
+                <th>UserID</th>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Completed</th>
             </tr>
+            <tbody></tbody>
         </table>
         
         <a href="todo.json">ToDo</a> <a href="read-todo.html">Read-ToDo</a>

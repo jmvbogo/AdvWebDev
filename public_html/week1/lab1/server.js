@@ -4,29 +4,31 @@ var http = require('http');
 var url = require('url');
 var fileSystem = require('fs');
 
+
 http.createServer(function (request, response) {
     
     var pathName = url.parse(request.url).pathname;
     var fileName = pathName.substr(1); /* lets remove the "/" from the name */
-
+    var dfltType = 'text/html';
+    
     if (fileName == "index"){
 
         fileName = "index.html";
     }
     
     else if (fileName == "todo" || fileName == "todo.json"){
-
+        dfltType = 'application/json';
         fileName = "todo.json";
     }
     
     else if (fileName == "read-todo" || fileName =="read-todo.html"){
         
-        fileName = "read-todo.html"
+        fileName = "read-todo.html";
     }
     
     else {
         
-        fileName = "index.html"
+        fileName = "index.html";
     }
 
     /* lets try to read the html page found */
@@ -46,7 +48,7 @@ http.createServer(function (request, response) {
              * HTTP Status: 200 : OK
              * Content Type: text/html 
              */
-            response.writeHead(200, {'Content-Type': 'text/html'}); 
+            response.writeHead(200, {'Content-Type': dfltType}); 
             response.write(data.toString());
         }     
         
