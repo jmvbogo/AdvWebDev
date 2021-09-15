@@ -1,2 +1,2 @@
 # AdvWebDev
-Advanced Web Development demos and labs
+Advanced Web Development Proof of Concept
