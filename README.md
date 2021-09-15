@@ -1,2 +1,4 @@
 # AdvWebDev
-Advanced Web Development Proof of Concept
+ Proof of Concept With Advanced Web Development Using Node.JS
+ 
+ ###### New England Institue of Technology
